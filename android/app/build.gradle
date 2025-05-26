@@ -2,6 +2,11 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+project.ext.react = [
+    entryFile: "index.js",
+    enableHermes: true  // 👈 Add this if missing
+]
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -108,6 +113,8 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:33.13.0')
+    implementation 'com.google.firebase:firebase-analytics'
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
@@ -116,4 +123,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    implementation 'com.google.firebase:firebase-auth:21.0.1' // latest version recommended
+
 }
+
+
+
+apply plugin: 'com.google.gms.google-services'
